@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Educational digital signature and document verification system">
+<title>Dashboard | SignVerify</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header id="site-header"></header>
+<main id="main">
+<section class="hero">
+  <h1>Digital Signature &amp; Document Verification</h1>
+  <p class="lead">Sign documents with a private key, then let anyone verify them with your public key. Any change to the document, even one character, is detected.</p>
+  <span id="server-status" class="badge neutral">Checking server...</span>
+</section>
+
+<h2>Overview</h2>
+<div id="stats" class="grid grid-4" aria-live="polite"></div>
+
+<h2 style="margin-top:28px">Get started</h2>
+<div class="grid grid-4">
+  <a class="card action-card" href="keys.html"><div class="icon" aria-hidden="true">&#128273;</div><h3>1. Create keys</h3><p class="muted small">Generate your RSA key pair and register your public key.</p></a>
+  <a class="card action-card" href="sign.html"><div class="icon" aria-hidden="true">&#9997;&#65039;</div><h3>2. Sign a document</h3><p class="muted small">Produce a signature file for any document.</p></a>
+  <a class="card action-card" href="verify.html"><div class="icon" aria-hidden="true">&#9989;</div><h3>3. Verify</h3><p class="muted small">Check a document and its signature file.</p></a>
+  <a class="card action-card" href="learn.html"><div class="icon" aria-hidden="true">&#127891;</div><h3>Learn</h3><p class="muted small">How hashing and digital signatures work.</p></a>
+</div>
+
+<h2 style="margin-top:28px">Recent activity</h2>
+<div class="card table-wrap">
+  <table>
+    <thead><tr><th>Time</th><th>Action</th><th>File</th><th>Result</th></tr></thead>
+    <tbody id="recent-body"><tr><td colspan="4" class="muted">Loading...</td></tr></tbody>
+  </table>
+</div>
+</main>
+<footer id="site-footer"></footer>
+<script src="js/main.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

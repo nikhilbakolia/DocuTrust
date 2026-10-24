@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Educational digital signature and document verification system">
+<title>Sign | SignVerify</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header id="site-header"></header>
+<main id="main">
+<h1>Sign a Document</h1>
+<p class="lead">Choose a document and your private key. You will get a small signature file to send along with the document.</p>
+
+<div class="grid grid-2">
+  <div class="card">
+    <form id="sign-form" novalidate>
+      <div class="field">
+        <label for="doc-file">Document (any file type, max 5 MB)</label>
+        <input type="file" id="doc-file">
+      </div>
+      <div class="field">
+        <label for="key-file">Private key file (.pem)</label>
+        <input type="file" id="key-file" accept=".pem,.key,.txt">
+        <div class="hint">Or paste the key text below.</div>
+      </div>
+      <div class="field">
+        <label for="private-key">Private key (PEM text)</label>
+        <textarea id="private-key" spellcheck="false" autocomplete="off" placeholder="-----BEGIN ENCRYPTED PRIVATE KEY-----"></textarea>
+      </div>
+      <div class="field">
+        <label for="passphrase">Passphrase (if your key is encrypted)</label>
+        <input type="password" id="passphrase" maxlength="128" autocomplete="off">
+      </div>
+      <button class="btn" id="sign-btn" type="submit"><span class="spinner"></span>Sign document</button>
+      <div id="alert" aria-live="polite"></div>
+    </form>
+  </div>
+  <div class="card stack">
+    <h2>What happens when you click Sign</h2>
+    <ol class="steps">
+      <li>The document is hashed with <b>SHA-256</b>.</li>
+      <li>The hash, signing time and your key fingerprint are bundled together.</li>
+      <li>The bundle is signed with your <b>private key</b> (RSA-PSS).</li>
+      <li>You download the <b>.sig.json</b> signature file.</li>
+    </ol>
+    <div class="notice">Learning demo note: your private key is sent to this local server and used in memory only; it is never saved or logged. In a real product, signing would happen on your own device so the private key never leaves it.</div>
+  </div>
+</div>
+<div id="result" style="margin-top:16px" aria-live="polite"></div>
+</main>
+<footer id="site-footer"></footer>
+<script src="js/main.js"></script>
+<script src="js/sign.js"></script>
+</body>
+</html>

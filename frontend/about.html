@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Educational digital signature and document verification system">
+<title>About | SignVerify</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header id="site-header"></header>
+<main id="main">
+<h1>About This Project</h1>
+<p class="lead">Digital Signature &amp; Document Verification System: an Introduction to Cyber Security project.</p>
+
+<div class="stack">
+<section class="card">
+  <h2>Objectives</h2>
+  <ul>
+    <li>Demonstrate how digital signatures provide integrity and authenticity.</li>
+    <li>Let users generate keys, sign documents and verify them.</li>
+    <li>Explain every verification result in plain language.</li>
+    <li>Follow secure coding practice: no private key storage, validated input, safe errors.</li>
+  </ul>
+</section>
+
+<section class="grid grid-2">
+  <div class="card"><h2>Technology</h2>
+    <ul><li>Backend: Python, FastAPI, Pydantic</li><li>Cryptography: the <code>cryptography</code> library</li>
+    <li>Algorithms: RSA-2048, RSASSA-PSS, SHA-256</li><li>Database: SQLite via SQLAlchemy</li><li>Frontend: HTML, CSS, vanilla JavaScript</li></ul></div>
+  <div class="card"><h2>Security design</h2>
+    <ul><li>Private keys and documents are never stored or logged</li><li>Optional passphrase encryption of private keys</li>
+    <li>Input validation and size limits (5 MB files)</li><li>ORM queries only (no SQL injection)</li>
+    <li>Safe error messages, no stack traces</li><li>Basic rate limiting</li></ul></div>
+</section>
+
+<section class="card">
+  <h2>Limitations</h2>
+  <ul>
+    <li>No certificate authority: the registry shows a name next to a key but does not prove real-world identity.</li>
+    <li>Signing happens on the server for demo simplicity; a real product would sign on the user's device.</li>
+    <li>This is an educational tool and not a legally recognised e-signature service.</li>
+    <li>Rate limiting is in memory and suited only to a single local server.</li>
+  </ul>
+</section>
+</div>
+</main>
+<footer id="site-footer"></footer>
+<script src="js/main.js"></script>
+
+</body>
+</html>

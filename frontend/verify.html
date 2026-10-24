@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Educational digital signature and document verification system">
+<title>Verify | SignVerify</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header id="site-header"></header>
+<main id="main">
+<h1>Verify a Document</h1>
+<p class="lead">Provide the document you received, the signature file, and the signer's public key. The system tells you whether the signature is valid and why.</p>
+
+<div class="grid grid-2">
+  <div class="card">
+    <form id="verify-form" novalidate>
+      <div class="field">
+        <label for="doc-file">Document to verify</label>
+        <input type="file" id="doc-file">
+      </div>
+      <div class="field">
+        <label for="sig-file">Signature file (.sig.json)</label>
+        <input type="file" id="sig-file" accept=".json,.sig">
+      </div>
+      <div class="field">
+        <label for="key-select">Signer's public key</label>
+        <select id="key-select"><option value="">- choose a registered signer -</option></select>
+        <div class="hint">Or upload / paste a public key below (pasted key takes priority).</div>
+      </div>
+      <div class="field">
+        <label for="pub-file">Public key file (.pem)</label>
+        <input type="file" id="pub-file" accept=".pem,.txt">
+      </div>
+      <div class="field">
+        <label for="public-key">Public key (PEM text)</label>
+        <textarea id="public-key" spellcheck="false" autocomplete="off" placeholder="-----BEGIN PUBLIC KEY-----"></textarea>
+      </div>
+      <button class="btn" id="verify-btn" type="submit"><span class="spinner"></span>Verify signature</button>
+      <div id="alert" aria-live="polite"></div>
+    </form>
+  </div>
+  <div class="card stack">
+    <h2>What gets checked</h2>
+    <ol class="steps">
+      <li><b>Document integrity:</b> is the file exactly the one that was signed?</li>
+      <li><b>Signer key match:</b> is this the public key the signer says they used?</li>
+      <li><b>Signature authenticity:</b> does the signature verify mathematically?</li>
+    </ol>
+    <p class="muted small">All three must pass for a VALID result. Try verifying the tampered sample from the Learn page to see a failure explained.</p>
+  </div>
+</div>
+<div id="result" style="margin-top:16px" aria-live="polite"></div>
+</main>
+<footer id="site-footer"></footer>
+<script src="js/main.js"></script>
+<script src="js/verify.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Educational digital signature and document verification system">
+<title>Keys | SignVerify</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header id="site-header"></header>
+<main id="main">
+<h1>Key Management</h1>
+<p class="lead">A key pair has two parts: a <b>private key</b> that only you keep, and a <b>public key</b> that you share so others can verify your signatures.</p>
+
+<div class="grid grid-2">
+  <div class="card">
+    <h2>Generate a new key pair</h2>
+    <form id="keygen-form" novalidate>
+      <div class="field">
+        <label for="owner">Your name</label>
+        <input type="text" id="owner" maxlength="60" required autocomplete="name">
+        <div class="hint">Letters, numbers, spaces and . , ' _ - only.</div>
+      </div>
+      <div class="field">
+        <label for="passphrase">Passphrase (recommended)</label>
+        <input type="password" id="passphrase" maxlength="128" autocomplete="new-password">
+        <div class="hint">At least 8 characters. It encrypts your private key file, so a stolen file is useless without it. Leave empty for a quick demo.</div>
+      </div>
+      <div class="field">
+        <label for="passphrase2">Repeat passphrase</label>
+        <input type="password" id="passphrase2" maxlength="128" autocomplete="new-password">
+      </div>
+      <button class="btn" id="gen-btn" type="submit"><span class="spinner"></span>Generate key pair</button>
+      <div id="alert" aria-live="polite"></div>
+    </form>
+  </div>
+  <div class="card stack">
+    <h2>Golden rules</h2>
+    <ul>
+      <li>The <b>private key</b> is shown and downloaded <b>once</b>. This server never stores it.</li>
+      <li>Never share your private key. Anyone who has it can sign as you.</li>
+      <li>The <b>public key</b> is safe to share. It is stored in the registry below.</li>
+      <li>Generating a key takes a second or two (2048-bit RSA).</li>
+    </ul>
+    <div class="notice">Use made-up demo identities in this project, not real personal or banking keys.</div>
+  </div>
+</div>
+
+<div id="result" style="margin-top:16px" aria-live="polite"></div>
+
+<h2 style="margin-top:28px">Registered public keys</h2>
+<div class="card table-wrap">
+  <table>
+    <thead><tr><th>ID</th><th>Owner</th><th>Fingerprint</th><th>Created</th><th>Download</th></tr></thead>
+    <tbody id="keys-body"><tr><td colspan="5" class="muted">Loading...</td></tr></tbody>
+  </table>
+</div>
+</main>
+<footer id="site-footer"></footer>
+<script src="js/main.js"></script>
+<script src="js/keys.js"></script>
+</body>
+</html>

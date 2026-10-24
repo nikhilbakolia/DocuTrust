@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Educational digital signature and document verification system">
+<title>Learn | SignVerify</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header id="site-header"></header>
+<main id="main">
+<h1>Learn: How Digital Signatures Work</h1>
+<p class="lead">Written for students. Each idea builds on the one before it.</p>
+
+<div class="stack">
+<section class="card">
+  <h2>1. Hashing: a fingerprint for data</h2>
+  <p>A <b>hash function</b> such as SHA-256 turns any file into a fixed-length string. The same file always gives the same hash. Change even one character and the hash changes completely. You cannot work backwards from a hash to the file.</p>
+  <label for="hash-input">Try it: type anything and watch the SHA-256 change</label>
+  <input type="text" id="hash-input" value="Pay Rahul Rs. 1000" autocomplete="off">
+  <p class="mono" id="hash-output" style="margin-top:10px" aria-live="polite"></p>
+  <p class="hint">Highlighted characters changed since your last keystroke. Add or delete one letter and almost every character changes. This runs only in your browser.</p>
+</section>
+
+<section class="card">
+  <h2>2. Public-key cryptography: two linked keys</h2>
+  <p>A key pair has a <b>private key</b> (secret) and a <b>public key</b> (shareable). Something signed with the private key can be checked with the public key, but the public key cannot be used to sign. Our project uses <b>RSA with 2048-bit keys</b>.</p>
+</section>
+
+<section class="card">
+  <h2>3. Signing and verifying</h2>
+  <div class="flow" aria-label="Signing flow">
+    <span class="node">Document</span><span class="arrow">&rarr;</span>
+    <span class="node">SHA-256 hash</span><span class="arrow">&rarr;</span>
+    <span class="node">Sign with private key</span><span class="arrow">&rarr;</span>
+    <span class="node">Signature</span>
+  </div>
+  <p style="margin-top:14px">The receiver re-hashes the document and uses the signer's public key to check the signature. If both agree, the document is <b>unchanged</b> (integrity) and was signed by the <b>key holder</b> (authenticity). The signer also cannot easily deny signing (non-repudiation).</p>
+</section>
+
+<section class="card">
+  <h2>4. Digital signature vs similar terms</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Term</th><th>What it is</th></tr></thead>
+    <tbody>
+      <tr><td>Digital signature</td><td>Cryptographic proof of integrity and authenticity, built on hashing and a key pair.</td></tr>
+      <tr><td>Electronic signature</td><td>Any electronic sign of intent, such as a drawn signature or a ticked box. Not necessarily cryptographic.</td></tr>
+      <tr><td>Encryption</td><td>Keeps content secret. A signature does not hide the document; it proves it is genuine.</td></tr>
+      <tr><td>Digital certificate</td><td>A document from a trusted authority linking a public key to a real identity.</td></tr>
+    </tbody></table></div>
+</section>
+
+<section class="card">
+  <h2>5. Where digital signatures are used</h2>
+  <ul>
+    <li>Software updates and app stores (proving code was not altered).</li>
+    <li>HTTPS certificates on websites.</li>
+    <li>Signed PDFs, contracts and government e-documents.</li>
+    <li>Email signing (S/MIME, PGP) and code signing.</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>6. Threats and limits</h2>
+  <ul>
+    <li><b>Stolen private key:</b> an attacker can sign as you. Protect it with a passphrase.</li>
+    <li><b>Wrong public key:</b> a signature only proves "this key signed it". Real systems use certificates to tie a key to a person.</li>
+    <li><b>Tampering:</b> any change to the document makes verification fail (try the sample below).</li>
+    <li><b>Weak algorithms:</b> old hashes like MD5 or SHA-1 are broken. We use SHA-256.</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>7. Try the 6-step demo yourself</h2>
+  <ol class="steps">
+    <li>Go to <a href="keys.html">Keys</a> and create a key pair. Download both PEM files.</li>
+    <li>Download the sample document: <a href="samples/sample_document.txt" download>sample_document.txt</a>.</li>
+    <li>On <a href="sign.html">Sign</a>, sign it and download the <b>.sig.json</b> file.</li>
+    <li>On <a href="verify.html">Verify</a>, upload the same document and signature and choose your key. Result: <b>VALID</b>.</li>
+    <li>Now verify using the tampered file: <a href="samples/sample_document_tampered.txt" download>sample_document_tampered.txt</a> (only the price changed from Rs. 500 to Rs. 5000). Result: <b>INVALID</b>, with "Document integrity" failing.</li>
+    <li>Optional: create a second key pair and verify with the wrong public key. The "Signer key match" check fails.</li>
+  </ol>
+</section>
+</div>
+</main>
+<footer id="site-footer"></footer>
+<script src="js/main.js"></script>
+<script src="js/learn.js"></script>
+</body>
+</html>

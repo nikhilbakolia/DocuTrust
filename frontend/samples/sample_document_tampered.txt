@@ -1,0 +1,8 @@
+SAMPLE CONTRACT (EDUCATIONAL, FICTIONAL)
+
+Agreement between Example Student A and Example Student B.
+Item: Used textbook "Introduction to Cyber Security".
+Price agreed: Rs. 5000.
+Delivery date: 1 December.
+
+Signed digitally for the SignVerify demo. Nothing here is real.
